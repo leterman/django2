@@ -28,9 +28,13 @@ def index_view(request, dt):
             break
         serving = int(servings) * dish[key]
         dish[key] = round(serving, 2)
-    recipy = str(dish).replace("{","").replace("}", "")
-    return HttpResponse(f'{recipy}\n')
-    # return HttpResponse(date)
+    context = {
+            'recipe': {}
+        }
+    if DATA.get(name):
+        for key, value in DATA[name].items():
+            context['recipe'][key] = value
+    return render(request, 'calculator/index.html', context)
 # Напишите ваш обработчик. Используйте DATA как источник данных
 # Результат - render(request, 'calculator/index.html', context)
 # В качестве контекста должен быть ytпередан словарь с рецептом:
