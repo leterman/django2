@@ -29,8 +29,8 @@ def index_view(request, dt):
         serving = int(servings) * dish[key]
         dish[key] = round(serving, 2)
     context = {
-            'recipe': {}
-        }
+        'recipe': {}
+    }
     if DATA.get(name):
         for key, value in DATA[name].items():
             context['recipe'][key] = value
